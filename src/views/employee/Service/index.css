@@ -1,0 +1,64 @@
+.vehicle {
+    padding: 20px;
+}
+
+.vehicle-list-header {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 15px;
+}
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 20px 0;
+    background-color: #fff;
+    border: 1px solid #e0e0e0;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+  
+  /* Style table headers */
+  th {
+    background-color: #333;
+    color: #fff;
+    text-align: left;
+    padding: 10px;
+  }
+  
+  /* Style even rows */
+  tr:nth-child(even) {
+    background-color: #f2f2f2;
+  }
+  
+  /* Style odd rows */
+  tr:nth-child(odd) {
+    background-color: #fff;
+  }
+  
+  /* Style table cells */
+  td {
+    padding: 10px;
+    border: 1px solid #e0e0e0;
+  }
+  
+  /* Style the "Edit" and "Delete" buttons */
+  button {
+    background-color: #007BFF;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    padding: 10px 20px;
+    cursor: pointer;
+    margin: 10px;
+  }
+  
+  /* Hover effect on buttons */
+  button:hover {
+    background-color: #0056b3;
+  }
+  h2 {
+    font-size: 55px;
+    color: #333;
+    margin: 0;
+    padding: 10px 0;
+    border-bottom: 1px solid #ccc;
+  }

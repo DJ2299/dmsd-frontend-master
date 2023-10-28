@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <link rel="icon" href="%PUBLIC_URL%/favicon.ico" />
+    <!-- <meta name="viewport" content="width=device-width, initial-scale=1" /> -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no" />
+    <link rel="apple-touch-icon" href="%PUBLIC_URL%/logo192_1.png" />
+    <meta name="theme-color" content="#ffffff" />
+    <meta name="description" content="EXPLORE CONNECT SCALE" />
+    <meta name="apple-mobile-web-app-title" content="" />
+    <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <title>Car Service</title>
+  </head>
+
+  <body>
+    <noscript>You need to enable JavaScript to run this app.</noscript>
+    <div id="root"></div>
+    <script>
+      if ('serviceWorker' in navigator) {
+        window.addEventListener('load', function () {
+          navigator.serviceWorker
+            .register('worker.js')
+            .then(
+              function (registration) {
+                console.log('Worker registration successful', registration.scope);
+              },
+              function (err) {
+                console.log('Worker registration failed', err);
+              },
+            )
+            .catch(function (err) {
+              console.log(err);
+            });
+        });
+      } else {
+        console.log('Service Worker is not supported by browser.');
+      }
+    </script>
+    <script type="text/javascript" src="https://code.jquery.com/jquery-1.7.1.min.js">
+        // $(function () {
+        //   return $("[data-sticky_column]").stick_in_parent({
+        //     parent: "[data-sticky_parent]",
+        //     offset_top: 110,
+        //   });
+        // });
+        $(document).ready(function () {
+        $('.notification .dropdown-menu ').on('click', function (e) {
+          e.stopPropagation();
+        });
+      });
+        $(document).ready(function () {
+          $('.dot1.dot.dropdown').click(function () {
+            $(".dot2.dot.dropdown .dropdown-menu").removeClass("show");
+            $('.dot1.dot.dropdown .dropdown-menu').toggleClass('show');
+          });
+        });
+        $(document).ready(function () {
+          $('.dot2.dot.dropdown').click(function () {
+            $(".dot1.dot.dropdown .dropdown-menu").removeClass("show");
+            $('.dot2.dot.dropdown .dropdown-menu').toggleClass('show');
+          });
+        });
+    </script>
+    <script type="text/javascript" src="https://code.jquery.com/jquery-1.7.1.min.js">
+      $(document).ready(function () {
+        $("#sidebar").mCustomScrollbar({
+          theme: "minimal",
+        });
+
+        $("#dismiss, .overlay").on("click", function () {
+          $("#sidebar").removeClass("active");
+          $(".overlay").removeClass("active");
+        });
+
+        $("#sidebarCollapse").on("click", function () {
+          $("#sidebar").addClass("active");
+          $(".overlay").addClass("active");
+          $(".collapse.in").toggleClass("in");
+          $("a[aria-expanded=true]").attr("aria-expanded", "false");
+        });
+      });
+    </script>
+
+    <!--
+      This HTML file is a template.
+      If you open it directly in the browser, you will see an empty page.
+
+      You can add webfonts, meta tags, or analytics to this file.
+      The build step will place the bundled scripts into the <body> tag.
+
+      To begin the development, run `npm start` or `yarn start`.
+      To create a production bundle, use `npm run build` or `yarn build`.
+    -->
+  </body>
+</html>

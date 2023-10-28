@@ -1,0 +1,42 @@
+.text-button {
+  background: transparent;
+  border: none;
+  outline: none !important;
+  cursor: pointer;
+}
+button {
+  outline: none !important;
+}
+/* hr {
+    color: #000;
+    height: 2px;
+    background: #000;
+} */
+
+.link-button {
+  background: transparent;
+  padding: 0;
+}
+
+.error-message {
+  color: #ff0000;
+}
+
+.success-message {
+  color: #368d04;
+}
+
+.hide-error .error-section {
+  display: none;
+}
+
+.no-data-found-label {
+  display: flex !important;
+  justify-content: center !important;
+  align-content: center !important;
+  min-height: 50vh ;
+}
+
+textarea {
+  resize: none;
+}

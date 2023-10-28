@@ -1,0 +1,4 @@
+/src/assets/*
+/src/serviceWorker.js
+/public/worker.js
+/public/firebase-messaging-sw.js

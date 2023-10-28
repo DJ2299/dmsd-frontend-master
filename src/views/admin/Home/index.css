@@ -1,0 +1,22 @@
+.home {
+    display: flex;
+    gap: 15px;
+    padding: 15px;
+}
+
+.home a {
+    flex: 1;
+    background: #5691ea;
+    color: #ffffff;
+    font-size: 20px;
+    text-align: center;
+    padding: 30px 10px;
+    text-decoration: burlywood;
+    border-radius: 10px;
+    transition: background 0.1s ease; /* Add a smooth transition for the background color only */
+}
+
+.home a:hover {
+    background: black; /* Change the background color on hover, but not the font color */
+    font-size: 26px;
+}

@@ -1,0 +1,36 @@
+/* Header Styling */
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #505050;
+    padding: 15px 30px;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+    font-family: 'Arial', sans-serif; /* or any other professional font */
+}
+
+/* Navigation List Styling */
+.nav-list {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+/* Navigation Link Styling */
+.nav-list a {
+    color: #ffffff;
+    text-decoration: none;
+    transition: color 0.3s ease, transform 0.3s ease;
+    font-family: 'Arial', sans-serif; /* or any other professional font */
+}
+
+/* Navigation Link Hover Effect */
+.nav-list a:hover {
+    color: #ffd700;
+    text-decoration: underline;
+    transform: scale(1.1);
+}
