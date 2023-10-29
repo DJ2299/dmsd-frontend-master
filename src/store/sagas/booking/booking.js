@@ -54,10 +54,9 @@ export function* getBookingSaga(action) {
   const id = action.payload ? action.payload.id : null;
   yield errorHandler({
     endpoint: id
-      ? `/appointments/cust/${id}`
-      : action.payload && action.payload.loc
-      ? `/appointments/loc/${action.payload.loc}`
-      : `/appointments/all`,
+      ? `/visit/cust/${id}`
+      : action.payload 
+      `/visit/all`,
     successHandler: yield function* (response) {
       yield put(getBookingSuccess(response.data));
     },
@@ -70,7 +69,7 @@ export function* addBookingSaga(action) {
   yield put(addBookingStart());
   const { data, setIsSubmitted, closeModel } = action.payload;
   yield errorHandler({
-    endpoint: `/appointments`,
+    endpoint: `/visit`,
     successHandler: yield function* (response) {
       yield put(addBookingSuccess({ data }));
       if (setIsSubmitted) {
@@ -97,7 +96,7 @@ export function* editBookingSaga(action) {
     closeModel,
   } = action.payload;
   yield errorHandler({
-    endpoint: `/booking/${data.bookingId}`,
+    endpoint: `/visit/${data.bookingId}`,
     successHandler: yield function* (response) {
       yield put(editBookingSuccess({ data }));
       if (setIsSubmitted) {
@@ -119,7 +118,7 @@ export function* deleteBookingSaga(action) {
   yield put(deleteBookingStart());
   const { bookingIdId, setIsSubmitted } = action.payload;
   yield errorHandler({
-    endpoint: `/booking/${bookingId}`,
+    endpoint: `/visit/${bookingId}`,
     successHandler: yield function* (response) {
       yield put(deleteBookingSuccess({ bookingId,setIsSubmitted }));
       if (setIsSubmitted) {
