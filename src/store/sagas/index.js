@@ -12,7 +12,7 @@ import {
   addBookingSaga, collectPaymentSaga, editBookingSaga, getBookingSaga 
 } from './booking/booking';
 import { 
-   getVisitSaga 
+   getVisitSaga
 } from './serviceRecords/serviceRecords';
 import { 
   addCustomerSaga, addManagerSaga, addTechnicianSaga,

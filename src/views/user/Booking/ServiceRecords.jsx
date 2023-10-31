@@ -12,7 +12,7 @@ const Booking = props => {
   const [openAddBooking, setOpenAddBooking] = useState(false)
   const [openViewInvoice, setOpenViewInvoice] = useState(null)
   const { bookingList } = useSelector(
-    state => state.booking,
+    state => state.serviceRecords,
   );
   const { userData } = useSelector(
     state => state.auth,
@@ -21,6 +21,10 @@ const Booking = props => {
   const dispatch = useDispatch();
 
   useEffect(() => {
+
+    console.log('bookingList:', bookingList);
+console.log('userData:', userData);
+
     dispatch(getVisitSaga({ id: userData.id }))
     dispatch(getVehicleSaga({ id: userData.id }))
     dispatch(getLocationSaga())

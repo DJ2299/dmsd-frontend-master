@@ -11,8 +11,8 @@ export default (state = initialState, { type, payload }) => {
     case actionLabels.GET_BOOKING_START:
       return { ...state, isLoading: true, isProfileLoading: true };
 
-    case actionLabels.GET_VISIT_START:
-      return { ...state, isLoading: true, isProfileLoading: true };
+    // case actionLabels.GET_VISIT_START:
+    //   return { ...state, isLoading: true, isProfileLoading: true };
 
 
     case actionLabels.GET_BOOKING_SUCCESS: {
@@ -23,21 +23,21 @@ export default (state = initialState, { type, payload }) => {
       };
     }
 
-    case actionLabels.GET_VISIT_SUCCESS: {
-      return {
-        ...state,
-        isLoading: false,
-        bookingList: payload,
-      };
-    }
+    // case actionLabels.GET_VISIT_SUCCESS: {
+    //   return {
+    //     ...state,
+    //     isLoading: false,
+    //     bookingList: payload,
+    //   };
+    // }
 
     case actionLabels.GET_BOOKING_FAIL: {
       return { ...state, isLoading: false, errorMsg: payload };
     }
 
-    case actionLabels.GET_VISIT_FAIL: {
-      return { ...state, isLoading: false, errorMsg: payload };
-    }
+    // case actionLabels.GET_VISIT_FAIL: {
+    //   return { ...state, isLoading: false, errorMsg: payload };
+    // }
 
     case actionLabels.ADD_BOOKING_START:
       return { ...state, isLoading: true };

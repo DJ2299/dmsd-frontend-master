@@ -13,6 +13,7 @@ import {
   watchReport,
   watchService,
   watchVehicle,
+  watchServiceRecords,
 } from './store/sagas';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
@@ -36,6 +37,7 @@ sagaMiddleware.run(watchLocation);
 sagaMiddleware.run(watchService);
 sagaMiddleware.run(watchCustomer);
 sagaMiddleware.run(watchReport);
+sagaMiddleware.run(watchServiceRecords);
 
 ReactDOM.render(
   <React.StrictMode>
