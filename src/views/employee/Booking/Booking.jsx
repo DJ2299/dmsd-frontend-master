@@ -9,6 +9,7 @@ import {
 } from '../../../store/actions';
 import AddBooking from './AddBooking';
 import ViewInvoice from '../../user/Booking/ViewInvoice';
+import AddPayment from '../../admin/Booking/AddPayment';
 import './index.css';
 // import { getBooking1Saga } from '../../../store/sagas/booking/booking';
 
@@ -18,6 +19,8 @@ const Booking = props => {
   const [filter, setFilter] = useState([]);
   const [openViewInvoice, setOpenViewInvoice] = useState(null)
   const [openAddBooking, setOpenAddBooking] = useState(false)
+  const [openAddPayment, setOpenAddPayment] = useState(false)
+  const [appointmentId, setAppointmentId] = useState(false)
   const { bookingList } = useSelector(
     state => state.serviceRecords,
   );
@@ -69,7 +72,7 @@ const Booking = props => {
                 <th>Service</th>
                 <th>Appointment Date</th>
                 <th>Total Charge</th>
-                {/* <th>Payment Method</th> */}
+                <th>Payment Method</th>
                 <th>Status</th>
                 <th className='text-center'>Invoice</th>
                 <th>Actions</th>
@@ -84,22 +87,26 @@ const Booking = props => {
                     <td>{item.vehicleType}</td>
                     {/* <td>{item.locationName}</td> */}
                     <td>{item.customerName}</td>
-                    {/* <td>{item.serviceName ? item.serviceName.split(",").map(item1=> <>{item1}<br/></>) : "-"}</td> */}
                     <td>{item.serviceName}</td>
                     <td>{item.appointmentDate}</td>
                     <td>${item.totalCharge}</td>
-                    {/* <td>{item.paymentMethod}</td> */}
+                    <td>{item.paymentMethod}</td>
                     <td>
                       <select style={{ width: '100%', border: 0, outline: 0 }} value={item.status} 
-                        onChange={(e) => 
-                          dispatch(editBookingSaga({
-                            data: { 
-                              id: item.appointmentId,
-                              status: e.target.value
-                            },
-                            isStatus: true,
-                          }))
-                        }
+                        onChange={(e) => {
+                          if(e.target.value === "DONE") {
+                            setAppointmentId(item.appointmentId);
+                            setOpenAddPayment(true);
+                          } else {
+                            dispatch(editBookingSaga({
+                              data: { 
+                                id: item.appointmentId,
+                                status: e.target.value
+                              },
+                              isStatus: true,
+                            }))
+                          }
+                        }}
                       >
                         <option>CREATED</option>
                         <option>DROPPED</option>
@@ -167,6 +174,9 @@ const Booking = props => {
       {openAddBooking && <AddBooking modalOpenClose={setOpenAddBooking} />}
       {openViewInvoice && (
         <ViewInvoice data={openViewInvoice} modalOpenClose={setOpenViewInvoice} />
+      )}
+      {openAddPayment && (
+        <AddPayment modalOpenClose={setOpenAddPayment} appointmentId={appointmentId} />
       )}
     </>
   );

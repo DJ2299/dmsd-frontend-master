@@ -1,18 +1,20 @@
+import React from 'react';
 import { LOGO_PNG } from '../../../assets/images';
 import Model from '../../../components/UI/Model/Model';
 
-const ViewInvoice = props => {
+const ViewInvoice = (props) => {
   const { modalOpenClose, data } = props;
 
+  // Function to close the modal
   const closeModel = () => {
     modalOpenClose(null);
   };
 
   return (
     <div className="invoice-model">
+      {/* Render the modal component */}
       <Model
-        // headerTitle="Invoice"
-        modalId="signUpModal"
+        modalId="signUpModal" // Ensure the modalId is correctly defined
         modalClass="modal-md"
         closeModel={closeModel}
       >
@@ -32,16 +34,10 @@ const ViewInvoice = props => {
                 </div>
                 <div className="col-6 text-right">
                   <div className="receipt-right">
-                    <h5>Woody&apos;s Automotive</h5>
-                    <p>
-                      +1 XXXX-XXXX <i className="fa fa-phone" />
-                    </p>
-                    <p>
-                      dmsd@test.com <i className="fa fa-envelope-o" />
-                    </p>
-                    <p>
-                      {data.locationName}, USA <i className="fa fa-location-arrow" />
-                    </p>
+                    <h5>Woody's Automotive</h5>
+                    <p>+1 XXXX-XXXX <i className="fa fa-phone" /></p>
+                    <p>dmsd@test.com <i className="fa fa-envelope-o" /></p>
+                    <p>{data.locationName}, USA <i className="fa fa-location-arrow" /></p>
                   </div>
                 </div>
               </div>
@@ -50,15 +46,9 @@ const ViewInvoice = props => {
                 <div className="col-xs-8 col-sm-8 col-md-8 text-left">
                   <div className="receipt-right">
                     <h5>{data.customerName}</h5>
-                    <p>
-                      <b>Mobile :</b> +1 1234567890
-                    </p>
-                    <p>
-                      <b>Email :</b> test@test.com
-                    </p>
-                    <p>
-                      <b>Address :</b> {data.locationName}, USA
-                    </p>
+                    <p><b>Mobile :</b> +1 1234567890</p>
+                    <p><b>Email :</b> test@test.com</p>
+                    <p><b>Address :</b> {data.locationName}, USA</p>
                   </div>
                 </div>
                 <div className="col-xs-4 col-sm-4 col-md-4">
@@ -77,30 +67,25 @@ const ViewInvoice = props => {
                     </tr>
                   </thead>
                   <tbody>
-                    <tr>
-                      <td className="col-md-9">{data.services[0].serviceName}</td>
-                      <td className="col-md-3">
-                        {/* ${data.services[0].laborPrice + data.services[0].addCharge}/- */}
-                      </td>
-                    </tr>
-                    {data.services[0].partList.map(item => (
-                      <tr>
-                        <td className="col-md-9">{item.pname}</td>
-                        <td className="col-md-3">${item.retailPrice}/-</td>
-                      </tr>
+                    {data.services.map((service, serviceIndex) => (
+                      <React.Fragment key={serviceIndex}>
+                        <tr>
+                          <td className="col-md-9">{service.serviceName}</td>
+                          <td className="col-md-3"></td>
+                        </tr>
+                        {service.partList.map((part, partIndex) => (
+                          <tr key={`${serviceIndex}-${partIndex}`}>
+                            <td className="col-md-9">{part.pname}</td>
+                            <td className="col-md-3">${part.retailPrice}/-</td>
+                          </tr>
+                        ))}
+                      </React.Fragment>
                     ))}
                     <tr>
                       <td className="text-right">
                         <p>
                           <strong>Total Amount: </strong>
-                        </p>
-                      </td>
-                      <td>
-                        <p>
-                          <strong>${data.services[0].partList.reduce(
-          (total, item) => total + item.retailPrice,
-          0
-        )}</strong>
+                          <strong>${data.total}</strong>
                         </p>
                       </td>
                     </tr>
@@ -113,13 +98,12 @@ const ViewInvoice = props => {
                       <td className="text-left text-danger">
                         <h2>
                           <strong> ${data.services[0].partList.reduce(
-          (total, item) => total + item.retailPrice,
-          0
-        )}/-</strong>
+                            (total, item) => total + item.retailPrice,
+                            0
+                          )}/-</strong>
                         </h2>
                       </td>
                     </tr>
-                    
                   </tbody>
                 </table>
               </div>
@@ -127,10 +111,8 @@ const ViewInvoice = props => {
               <div className="row">
                 <div className="col-xs-8 col-sm-8 col-md-8 text-left">
                   <div className="receipt-right">
-                    <p>
-                      <b>Date :</b> {data.invoiceDate}
-                    </p>
-                    <p>Woody&apos;s Automotive</p>
+                    <p><b>Date :</b> {data.invoiceDate}</p>
+                    <p>Woody's Automotive</p>
                     <p>{data.locationName}, Manager</p>
                     <h5 style={{ color: 'rgb(140, 140, 140)', marginTop: 5 }}>
                       Thanks for servicing.!

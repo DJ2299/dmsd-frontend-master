@@ -138,6 +138,9 @@ const Booking = props => {
         </div>
       </div>
       {openAddBooking && <AddBooking modalOpenClose={setOpenAddBooking} />}
+      {openViewInvoice && (
+        <ViewInvoice data={openViewInvoice} modalOpenClose={setOpenViewInvoice} />
+      )}
       {openAddPayment && (
         <AddPayment modalOpenClose={setOpenAddPayment} appointmentId={appointmentId} />
       )}
