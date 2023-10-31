@@ -91,7 +91,7 @@ export function* editBookingSaga(action) {
     closeModel,
   } = action.payload;
   yield errorHandler({
-    endpoint: `/visit/${data.serviceId}`,
+    endpoint: `/appointments/${data.serviceId}`,
     successHandler: yield function* (response) {
       yield put(editBookingSuccess({ data }));
       if (setIsSubmitted) {
@@ -111,7 +111,7 @@ export function* editBookingSaga(action) {
 
 export function* deleteBookingSaga(action) {
   yield put(deleteBookingStart());
-  const { bookingIdId, setIsSubmitted } = action.payload;
+  const { bookingId, setIsSubmitted } = action.payload;
   yield errorHandler({
     endpoint: `/visit/${bookingId}`,
     successHandler: yield function* (response) {

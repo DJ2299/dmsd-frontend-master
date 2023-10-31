@@ -8,6 +8,10 @@ import {
   getVisitStart,
   getVisitFail,
   getVisitSuccess,
+  editVisitSaga as editVisitSagaAction,
+  editVisitStart,
+  editVisitSuccess,
+  editVisitFail,
   getBookingStart,
   getBookingSuccess,
   getBookingFail,
@@ -44,3 +48,28 @@ export function* getVisitSaga(action) {
   });
 }
 
+export function* editVisitSaga(action) {
+  yield put(editVisitStart());
+  const {
+    data,
+    setIsSubmitted,
+    closeModel,
+  } = action.payload;
+  yield errorHandler({
+    endpoint: `/visit/${data.serviceId}`,
+    successHandler: yield function* (response) {
+      yield put(editVisitSuccess({ data }));
+      if (setIsSubmitted) {
+        setIsSubmitted(false);
+        closeModel();
+      }
+    },
+    failHandler: yield function* (response) {
+      yield put(editVisitFail(response));
+      setIsSubmitted(false);
+    },
+    failHandlerType: 'CUSTOM',
+    apiType: 'put',
+    payload: data,
+  });
+}

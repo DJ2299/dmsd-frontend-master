@@ -15,7 +15,7 @@ const EditVehicle = props => {
     const { userData } = useSelector(state => state.auth);
     const validationSchema = Yup.object({
       vehicleType: Yup.string().required("Vehicle type required"),
-      locationName: Yup.string().required("Vehicle year required"),
+      vehicleYear: Yup.string().required("Vehicle year required"),
       vehicleColor: Yup.string().required("Vehicle color required"),
       vehicleModel: Yup.string().required("Vehicle model required"),
       vehicleManufacturer: Yup.string().required("Vehicle manufacturer required"),

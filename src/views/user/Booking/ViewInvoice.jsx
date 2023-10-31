@@ -97,7 +97,10 @@ const ViewInvoice = props => {
                       </td>
                       <td>
                         <p>
-                          <strong>$150/-</strong>
+                          <strong>${data.services[0].partList.reduce(
+          (total, item) => total + item.retailPrice,
+          0
+        )}</strong>
                         </p>
                       </td>
                     </tr>
@@ -109,10 +112,14 @@ const ViewInvoice = props => {
                       </td>
                       <td className="text-left text-danger">
                         <h2>
-                          <strong>$ 150/-</strong>
+                          <strong> ${data.services[0].partList.reduce(
+          (total, item) => total + item.retailPrice,
+          0
+        )}/-</strong>
                         </h2>
                       </td>
                     </tr>
+                    
                   </tbody>
                 </table>
               </div>

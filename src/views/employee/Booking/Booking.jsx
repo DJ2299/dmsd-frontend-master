@@ -2,10 +2,13 @@ import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import {
   editBookingSaga,
-  getBookingSaga
+  getBookingSaga,
+  editVisitSaga,
+  getVisitSaga
   
 } from '../../../store/actions';
 import AddBooking from './AddBooking';
+import ViewInvoice from '../../user/Booking/ViewInvoice';
 import './index.css';
 // import { getBooking1Saga } from '../../../store/sagas/booking/booking';
 
@@ -13,9 +16,10 @@ import './index.css';
 const Booking = props => {
   const [date, setDate] = useState('');
   const [filter, setFilter] = useState([]);
+  const [openViewInvoice, setOpenViewInvoice] = useState(null)
   const [openAddBooking, setOpenAddBooking] = useState(false)
   const { bookingList } = useSelector(
-    state => state.booking,
+    state => state.serviceRecords,
   );
   const { userData } = useSelector(
     state => state.auth,
@@ -25,7 +29,8 @@ const Booking = props => {
   const randomIndex = Math.floor(Math.random() * values.length);
   const charge = values[randomIndex]
   useEffect(() => {
-    dispatch(getBookingSaga({ loc: userData.location_id }))
+    console.log(getVisitSaga);
+    dispatch(getVisitSaga({ loc: userData.location_id }))
     // dispatch(getVehicleSaga({ id: userData.id }))
     // dispatch(getLocationSaga())
     // dispatch(getServiceSaga())
@@ -66,6 +71,7 @@ const Booking = props => {
                 <th>Total Charge</th>
                 {/* <th>Payment Method</th> */}
                 <th>Status</th>
+                <th className='text-center'>Invoice</th>
                 <th>Actions</th>
               </tr>
             </thead>
@@ -81,7 +87,7 @@ const Booking = props => {
                     {/* <td>{item.serviceName ? item.serviceName.split(",").map(item1=> <>{item1}<br/></>) : "-"}</td> */}
                     <td>{item.serviceName}</td>
                     <td>{item.appointmentDate}</td>
-                    <td>${item.total_charge}</td>
+                    <td>${item.totalCharge}</td>
                     {/* <td>{item.paymentMethod}</td> */}
                     <td>
                       <select style={{ width: '100%', border: 0, outline: 0 }} value={item.status} 
@@ -102,7 +108,16 @@ const Booking = props => {
                         <option>DONE</option>
                       </select>
                     </td>
-                   
+                    <td className='text-center'>
+                      {item.status === 'DONE' && <button
+                        style={{ color: '#2c74ca', fontWeight: 'bolder' }}
+                        type='button'
+                        className='text-button p-0'
+                        onClick={() => setOpenViewInvoice(item)}
+                      >
+                        View
+                      </button>}
+                    </td>
                     <td>
                         <button
                           type="button"
@@ -150,6 +165,9 @@ const Booking = props => {
         </div>
       </div>
       {openAddBooking && <AddBooking modalOpenClose={setOpenAddBooking} />}
+      {openViewInvoice && (
+        <ViewInvoice data={openViewInvoice} modalOpenClose={setOpenViewInvoice} />
+      )}
     </>
   );
 };

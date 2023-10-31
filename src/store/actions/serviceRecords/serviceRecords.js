@@ -62,24 +62,24 @@ export const getVisitFail = payload => ({
 //   payload,
 // });
 
-// export const editBookingStart = () => ({
-//   type: actionLabels.EDIT_BOOKING_START,
-// });
+export const editVisitStart = () => ({
+  type: actionLabels.EDIT_VISIT_START,
+});
 
-// export const editBookingSaga = payload => ({
-//   type: actionLabels.EDIT_BOOKING_SAGA,
-//   payload,
-// });
+export const editVisitSaga = payload => ({
+  type: actionLabels.EDIT_VISIT_SAGA,
+  payload,
+});
 
-// export const editBookingSuccess = payload => ({
-//   type: actionLabels.EDIT_BOOKING_SUCCESS,
-//   payload,
-// });
+export const editVisitSuccess = payload => ({
+  type: actionLabels.EDIT_VISIT_SUCCESS,
+  payload,
+});
 
-// export const editBookingFail = payload => ({
-//   type: actionLabels.EDIT_BOOKING_FAIL,
-//   payload,
-// });
+export const editVisitFail = payload => ({
+  type: actionLabels.EDIT_VISIT_FAIL,
+  payload,
+});
 
 // export const collectPaymentStart = () => ({
 //   type: actionLabels.COLLECT_PAYMENT_START,

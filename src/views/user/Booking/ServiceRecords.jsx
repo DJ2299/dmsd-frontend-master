@@ -65,9 +65,9 @@ console.log('userData:', userData);
                     <td>{item.appointmentDate}</td>
                     <td>$50</td>
                     <td>Cash</td>
-                    <td>View</td>
+                    {/* <td>View</td> */}
                   
-                    {/* <td className='text-center'>
+                    <td className='text-center'>
                       {item.status === 'DONE' && <button
                         style={{ color: '#2c74ca', fontWeight: 'bolder' }}
                         type='button'
@@ -76,7 +76,7 @@ console.log('userData:', userData);
                       >
                         View
                       </button>}
-                    </td> */}
+                    </td>
                   </tr>
                 )) : (
                   <tr><td colSpan={8} className="text-center pt-5 pb-5">Loading...</td></tr>
