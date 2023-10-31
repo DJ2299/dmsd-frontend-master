@@ -3,9 +3,11 @@ import { useDispatch, useSelector } from 'react-redux';
 import {
   editBookingSaga,
   getBookingSaga
+  
 } from '../../../store/actions';
 import AddBooking from './AddBooking';
 import './index.css';
+// import { getBooking1Saga } from '../../../store/sagas/booking/booking';
 
 // eslint-disable-next-line no-unused-vars
 const Booking = props => {
@@ -19,7 +21,9 @@ const Booking = props => {
     state => state.auth,
   );
   const dispatch = useDispatch();
-
+  const values = [10, 20, 30, 40, 50];
+  const randomIndex = Math.floor(Math.random() * values.length);
+  const charge = values[randomIndex]
   useEffect(() => {
     dispatch(getBookingSaga({ loc: userData.location_id }))
     // dispatch(getVehicleSaga({ id: userData.id }))
@@ -55,13 +59,14 @@ const Booking = props => {
             <thead>
               <tr>
                 <th>Vehicle</th>
-                <th>Location</th>
+                {/* <th>Location</th> */}
                 <th>Customer</th>
                 <th>Service</th>
                 <th>Appointment Date</th>
                 <th>Total Charge</th>
-                <th>Payment Method</th>
+                {/* <th>Payment Method</th> */}
                 <th>Status</th>
+                <th>Actions</th>
               </tr>
             </thead>
             <tbody>
@@ -71,12 +76,13 @@ const Booking = props => {
                 ) : filter.map(item => (
                   <tr>
                     <td>{item.vehicleType}</td>
-                    <td>{item.locationName}</td>
+                    {/* <td>{item.locationName}</td> */}
                     <td>{item.customerName}</td>
+                    {/* <td>{item.serviceName ? item.serviceName.split(",").map(item1=> <>{item1}<br/></>) : "-"}</td> */}
                     <td>{item.serviceName}</td>
                     <td>{item.appointmentDate}</td>
                     <td>${item.total_charge}</td>
-                    <td>${item.paymentMethod}</td>
+                    {/* <td>{item.paymentMethod}</td> */}
                     <td>
                       <select style={{ width: '100%', border: 0, outline: 0 }} value={item.status} 
                         onChange={(e) => 
@@ -96,6 +102,44 @@ const Booking = props => {
                         <option>DONE</option>
                       </select>
                     </td>
+                   
+                    <td>
+                        <button
+                          type="button"
+                          // onClick={() => {setEditBooking(true);
+                          //   setSelectedBooking(item);
+                          // }}
+                          style={{
+                            backgroundColor: 'green',
+                            color: '#fff',
+                            border: 'none',
+                            borderRadius: '5px',
+                            padding: '10px 20px',
+                            cursor: 'pointer',
+                            margin:'10px',
+                            marginLeft:'10px',
+                            marginRight:'50px'
+                          }}
+                          >
+                          Edit
+                        </button>
+                        <span></span>
+                        <button
+                          type="button"
+                          // onClick={() => handleDelete(item.bookingId)}
+                          style={{
+                            backgroundColor: 'red',
+                            color: '#fff',
+                            border: 'none',
+                            borderRadius: '5px',
+                            padding: '10px 20px',
+                            cursor: 'pointer',
+                            margin:'10px'
+                          }}
+                        >
+                         Delete
+                        </button>
+                      </td>
                   </tr>
                 )) : (
                   <tr><td colSpan={8} className="text-center pt-5 pb-5">Loading...</td></tr>

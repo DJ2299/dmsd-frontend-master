@@ -9,6 +9,30 @@ export const getBookingSaga = payload => ({
   payload,
 });
 
+export const getVisitStart = () => ({
+  type: actionLabels.GET_VISIT_START,
+});
+
+export const getVisitSaga = payload => ({
+  type: actionLabels.GET_VISIT_SAGA,
+  payload,
+});
+
+export const getVisitSuccess = payload => ({
+  type: actionLabels.GET_VISIT_SUCCESS,
+  payload,
+});
+
+export const getVisitFail = payload => ({
+  type: actionLabels.GET_VISIT_FAIL,
+  payload,
+});
+
+export const getBooking1Saga = payload => ({
+  type: actionLabels.GET_BOOKING1_SAGA,
+  payload,
+});
+
 export const getBookingSuccess = payload => ({
   type: actionLabels.GET_BOOKING_SUCCESS,
   payload,

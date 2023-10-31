@@ -36,6 +36,7 @@ const Layout = props => {
             <>
               <div><Link to="/vehicle">Vehicle</Link></div>
               <div><Link to="/booking">Booking</Link></div>
+              <div><Link to="/serviceRecords">Service Records</Link></div>
               <div><Link to="/profile">Profile</Link></div>
             </>
           ) : userData.personType === 'ADMIN' ? (

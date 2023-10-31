@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import {
-  getBookingSaga, getLocationSaga, getServiceSaga, getVehicleSaga
+  getBookingSaga, getLocationSaga, getServiceSaga, getVehicleSaga, getVisitSaga
 } from '../../../store/actions';
 import AddBooking from './AddBooking';
 import ViewInvoice from './ViewInvoice';
@@ -17,10 +17,11 @@ const Booking = props => {
   const { userData } = useSelector(
     state => state.auth,
   );
+  // const doneBookings = bookingList.filter(item => item.status === 'DONE');
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(getBookingSaga({ id: userData.id }))
+    dispatch(getVisitSaga({ id: userData.id }))
     dispatch(getVehicleSaga({ id: userData.id }))
     dispatch(getLocationSaga())
     dispatch(getServiceSaga())
@@ -59,7 +60,7 @@ const Booking = props => {
                     <td>{item.serviceName}</td>
                     <td>{item.appointmentDate}</td>
                     <td>$50</td>
-                    <td>{item.paymentMethod}</td>
+                    <td>{item.paymentMethod}Cash</td>
                   
                     <td className='text-center'>
                       {item.status === 'DONE' && <button

@@ -37,7 +37,7 @@ const ViewInvoice = props => {
                       +1 XXXX-XXXX <i className="fa fa-phone" />
                     </p>
                     <p>
-                      company@test.com <i className="fa fa-envelope-o" />
+                      dmsd@test.com <i className="fa fa-envelope-o" />
                     </p>
                     <p>
                       {data.locationName}, USA <i className="fa fa-location-arrow" />
@@ -78,18 +78,17 @@ const ViewInvoice = props => {
                   </thead>
                   <tbody>
                     <tr>
-                      <td className="col-md-9">{data.services.serviceName}</td>
+                      <td className="col-md-9">{data.services[0].serviceName}</td>
                       <td className="col-md-3">
-                        ${data.services.laborPrice + data.services.addCharge}/-
+                        {/* ${data.services[0].laborPrice + data.services[0].addCharge}/- */}
                       </td>
                     </tr>
-                    {data.services.partList.map(item => (
+                    {data.services[0].partList.map(item => (
                       <tr>
                         <td className="col-md-9">{item.pname}</td>
                         <td className="col-md-3">${item.retailPrice}/-</td>
                       </tr>
                     ))}
-
                     <tr>
                       <td className="text-right">
                         <p>
@@ -98,7 +97,7 @@ const ViewInvoice = props => {
                       </td>
                       <td>
                         <p>
-                          <strong>$ {data.total_charge}/-</strong>
+                          <strong>$150/-</strong>
                         </p>
                       </td>
                     </tr>
@@ -110,7 +109,7 @@ const ViewInvoice = props => {
                       </td>
                       <td className="text-left text-danger">
                         <h2>
-                          <strong>$ {data.total_charge}/-</strong>
+                          <strong>$ 150/-</strong>
                         </h2>
                       </td>
                     </tr>

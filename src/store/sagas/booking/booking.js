@@ -18,6 +18,10 @@ import {
   collectPaymentStart,
   collectPaymentSuccess,
   collectPaymentFail,
+  getVisitSaga as getVisitSagaAction,
+  getVisitStart,
+  getVisitFail,
+  getVisitSuccess,
 } from '../../actions';
 import { errorHandler } from '../../../utils';
 
@@ -55,12 +59,31 @@ export function* getBookingSaga(action) {
   yield errorHandler({
     endpoint: id
       ? `/visit/cust/${id}`
-      : action.payload 
-      `/visit/all`,
-    successHandler: yield function* (response) {
+      //: action.payload 
+     : `/visit/all`,
+     
+    successHandler:yield function* (response) {
       yield put(getBookingSuccess(response.data));
     },
     failHandler: getBookingFail,
+    apiType: 'get',
+  });
+}
+
+export function* getVisitSaga(action) {
+  yield put(getVisitStart());
+  
+  const id = action.payload ? action.payload.id : null;
+  yield errorHandler({
+    endpoint: id
+      ? `/appointments/cust/21`
+      // : action.payload 
+      :`/appointments/all`,
+     
+    successHandler:yield function* (response) {
+      yield put(getVisitSuccess(response.data));
+    },
+    failHandler: getVisitFail,
     apiType: 'get',
   });
 }
@@ -96,7 +119,7 @@ export function* editBookingSaga(action) {
     closeModel,
   } = action.payload;
   yield errorHandler({
-    endpoint: `/visit/${data.bookingId}`,
+    endpoint: `/visit/${data.serviceId}`,
     successHandler: yield function* (response) {
       yield put(editBookingSuccess({ data }));
       if (setIsSubmitted) {

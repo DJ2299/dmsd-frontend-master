@@ -29,9 +29,9 @@ const Service = props => {
         <div className='vehicle-list'>
           <div className='vehicle-list-header'>
             <h2>Service List</h2>
-            {/* <button type='button' onClick={() => setOpenAddService(true)}>
+            <button type='button' onClick={() => setOpenAddService(true)}>
               Add Service
-            </button> */}
+            </button>
           </div>
           <table width='100%' border={1}>
             <thead>

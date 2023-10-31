@@ -14,6 +14,7 @@ const Booking = props => {
   const [openEditBooking, setEditBooking] = useState(false)
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [openViewInvoice, setOpenViewInvoice] = useState(null)
+  
   const [selectedBooking, setSelectedBooking] = useState(null);
   const { bookingList } = useSelector(
     state => state.booking,
@@ -34,13 +35,14 @@ const Booking = props => {
     dispatch(getServiceSaga())
 
   }, [])
-
+  // const userAppointments = bookingList.filter(item => item.customerId === userId);
+  // const serviceNames = userAppointments.map(item => item.services.map(service => service.serviceName).join(', '));
   return (
     <>
       <div className="vehicle">
         <div className='vehicle-list'>
           <div className='vehicle-list-header'>
-            <h2>Booking List</h2>
+            <h2>Appointment List</h2>
             <button type='button' onClick={() => setOpenAddBooking(true)}>Book Appointment</button>
           </div>
           <table width='100%' border={1}>
@@ -51,7 +53,7 @@ const Booking = props => {
                 <th>Service</th>
                 <th>Appointment Date</th>
                 <th>Total Charge</th>
-                <th>Payment Method</th>
+                {/* <th>Payment Method</th> */}
                 <th>Status</th>
                 <th>Actions</th>
               </tr>
@@ -64,10 +66,27 @@ const Booking = props => {
                   <tr>
                     <td>{item.vehicleType}</td>
                     {/* <td>{item.locationName}</td> */}
-                    <td>{item.serviceName}</td>
+                    <td>{item.serviceName ? item.serviceName.split(",").map(item1=> <>{item1}<br/></>) : "-"}</td>
+                    {/* <td>{item.services[0].serviceName}</td> */}
+                    {/* <td>
+  {item.services && item.services.length > 0 ? (
+    item.services.map((service) => service.serviceName).join(', ')
+  ) : 'No services available'}
+</td> */}
+                    {/* <td>{serviceNames.join(', ')}</td> */}
+                    {/* <td>
+  {Array.isArray(item.serviceName) && item.serviceName.length > 0
+    ? item.serviceName.map((item1, index) => (
+        <React.Fragment key={index}>
+          {item1}
+          {index < item.serviceName.length - 1 && <br />}
+        </React.Fragment>
+      ))
+    : "No Service Names Available"}
+</td> */}
                     <td>{item.appointmentDate}</td>
                     <td>$100</td>
-                    <td>{item.paymentMethod}</td>
+                    {/* <td>{item.paymentMethod}Cash</td> */}
                     <td>{item.status}</td>
                     <td>
                         <button
@@ -119,10 +138,17 @@ const Booking = props => {
       {openViewInvoice && (
         <ViewInvoice data={openViewInvoice} modalOpenClose={setOpenViewInvoice} />
       )}
-      {openEditBooking && <EditBooking modalOpenClose={setOpenEditBooking}
+      {openEditBooking && <EditBooking modalOpenClose={setEditBooking}
       initialValues = {{
         customerId:userData.id,
-        
+        serviceId:selectedBooking.serviceId,
+        appointmentId:selectedBooking.appointmentId,
+        vehicleId:selectedBooking.vehicleId,
+        date:selectedBooking.appointmentDate,
+        serviceName:selectedBooking.serviceName,
+        locationName:selectedBooking.locationName,
+        vehicleType:selectedBooking.vehicleType,
+        locationId:selectedBooking.locationId,
       }}
       />}
     </>

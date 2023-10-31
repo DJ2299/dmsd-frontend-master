@@ -26,7 +26,12 @@ const AddAppointment = props => {
     locationId : Yup.number().min(1, "Location required").required("Location required"),
     date : Yup.string().required("Appointment date required"),
     // time : Yup.string().required("Appointment time required"),
-    serviceId: Yup.number().required("Service Required")
+    
+  serviceId: Yup.array()
+    .required("Service Id required")
+   ,
+  // serviceName: Yup.array()
+  //   .required("Service Name required")
   });
 
   const closeModel = () => {
@@ -59,8 +64,9 @@ const AddAppointment = props => {
             locationId : 0,
             date : "",
             // time : "",
-            serviceId: 0,
+            serviceId:[],
             status : "CREATED",
+            // serviceName : [],
           }}
           validationSchema={validationSchema}
           onSubmit={(values, { setSubmitting }) => {
@@ -220,11 +226,14 @@ const AddAppointment = props => {
                       className="form-control"
                       id="inputPassword"
                       name="serviceId"
-                    
+                    multiple
                       value={values.serviceId}
                       onChange={e => {
                         handleChange(e);
                         // dispatch(resetErrorMsg());
+                        const selectedServiceIds = Array.from(e.target.selectedOptions).map(option => option.textContent);
+    console.log('Selected serviceIds:', selectedServiceIds);
+  
                       }}
                       onBlur={handleBlur}
                     >

@@ -15,7 +15,7 @@ const EditVehicle = props => {
     const { userData } = useSelector(state => state.auth);
     const validationSchema = Yup.object({
       vehicleType: Yup.string().required("Vehicle type required"),
-      vehicleYear: Yup.string().required("Vehicle year required"),
+      locationName: Yup.string().required("Vehicle year required"),
       vehicleColor: Yup.string().required("Vehicle color required"),
       vehicleModel: Yup.string().required("Vehicle model required"),
       vehicleManufacturer: Yup.string().required("Vehicle manufacturer required"),
@@ -203,7 +203,7 @@ const EditVehicle = props => {
                       type="submit"
                       disabled={isSubmitted}
                     >
-                      Edit Vehicle
+                      Edit Booking
                     </button>
                     {/* <p className="mt-4 text-center signIn-text pb-3">
                       I already have an account.
