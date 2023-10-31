@@ -60,9 +60,10 @@ const Booking = props => {
                     <td>{item.serviceName}</td>
                     <td>{item.appointmentDate}</td>
                     <td>$50</td>
-                    <td>{item.paymentMethod}Cash</td>
+                    <td>Cash</td>
+                    <td>View</td>
                   
-                    <td className='text-center'>
+                    {/* <td className='text-center'>
                       {item.status === 'DONE' && <button
                         style={{ color: '#2c74ca', fontWeight: 'bolder' }}
                         type='button'
@@ -71,7 +72,7 @@ const Booking = props => {
                       >
                         View
                       </button>}
-                    </td>
+                    </td> */}
                   </tr>
                 )) : (
                   <tr><td colSpan={8} className="text-center pt-5 pb-5">Loading...</td></tr>

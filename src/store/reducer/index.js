@@ -4,6 +4,7 @@ import modal from './modal/modal';
 import profile from './profile/profile';
 import vehicle from './vehicle/vehicle';
 import booking from './booking/booking';
+import serviceRecords from './serviceRecords/serviceRecords';
 import location from './location/location';
 import service from './service/service';
 import user from './user/user';
@@ -15,6 +16,7 @@ const allReducers = combineReducers({
   profile,
   vehicle,
   booking,
+  serviceRecords,
   location,
   service,
   user,

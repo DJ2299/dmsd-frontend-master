@@ -12,6 +12,9 @@ import {
   addBookingSaga, collectPaymentSaga, editBookingSaga, getBookingSaga 
 } from './booking/booking';
 import { 
+   getVisitSaga 
+} from './serviceRecords/serviceRecords';
+import { 
   addCustomerSaga, addManagerSaga, addTechnicianSaga,
   editCustomerSaga, editManagerSaga, editTechnicianSaga,
   getCustomerSaga, getManagerSaga, getTechnicianSaga
@@ -67,6 +70,12 @@ export function* watchBooking() {
     takeEvery(actionLabels.ADD_BOOKING_SAGA, addBookingSaga),
     takeEvery(actionLabels.EDIT_BOOKING_SAGA, editBookingSaga),
     takeEvery(actionLabels.COLLECT_PAYMENT_SAGA, collectPaymentSaga),
+  ]);
+}
+
+export function* watchServiceRecords() {
+  yield all([
+    takeLatest(actionLabels.GET_VISIT_SAGA, getVisitSaga)
   ]);
 }
 

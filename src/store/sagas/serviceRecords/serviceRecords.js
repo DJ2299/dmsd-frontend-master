@@ -25,25 +25,25 @@ import {
 } from '../../actions';
 import { errorHandler } from '../../../utils';
 
-export function* getBookingSaga(action) {
-  yield put(getBookingStart());
-  const id = action.payload ? action.payload.id : null;
-  yield errorHandler({
-    endpoint: id
-      ? `/visit/cust/${id}`
-      //: action.payload 
-     : `/visit/all`,
+// export function* getBookingSaga(action) {
+//   yield put(getBookingStart());
+//   const id = action.payload ? action.payload.id : null;
+//   yield errorHandler({
+//     endpoint: id
+//       ? `/visit/cust/${id}`
+//       //: action.payload 
+//      : `/visit/all`,
      
-    successHandler:yield function* (response) {
-      yield put(getBookingSuccess(response.data));
-    },
-    failHandler: getBookingFail,
-    apiType: 'get',
-  });
-}
+//     successHandler:yield function* (response) {
+//       yield put(getBookingSuccess(response.data));
+//     },
+//     failHandler: getBookingFail,
+//     apiType: 'get',
+//   });
+// }
 
 export function* getVisitSaga(action) {
-  yield put(getBookingStart());
+  yield put(getVisitStart());
   
   const id = action.payload ? action.payload.id : null;
   yield errorHandler({
