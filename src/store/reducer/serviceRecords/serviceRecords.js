@@ -11,10 +11,13 @@ export default (state = initialState, { type, payload }) => {
     case actionLabels.GET_VISIT_START:
       return { ...state, isLoading: true, isProfileLoading: true };
 
-      case actionLabels.EDIT_VISIT_START:
+      case actionLabels.EDIT_VISIT_START:{
+        console.log("EDIT_VISIT_START");
         return { ...state, isLoading: true };
+      }
         
       case actionLabels.EDIT_VISIT_SUCCESS: {
+        console.log("EDIT_VISIT_SUCCESS");
         return {
           ...state,
         };

@@ -9,24 +9,24 @@ export const getBookingSaga = payload => ({
   payload,
 });
 
-export const getVisitStart = () => ({
-  type: actionLabels.GET_VISIT_START,
-});
+// export const getVisitStart = () => ({
+//   type: actionLabels.GET_VISIT_START,
+// });
 
-export const getVisitSaga = payload => ({
-  type: actionLabels.GET_VISIT_SAGA,
-  payload,
-});
+// export const getVisitSaga = payload => ({
+//   type: actionLabels.GET_VISIT_SAGA,
+//   payload,
+// });
 
-export const getVisitSuccess = payload => ({
-  type: actionLabels.GET_VISIT_SUCCESS,
-  payload,
-});
+// export const getVisitSuccess = payload => ({
+//   type: actionLabels.GET_VISIT_SUCCESS,
+//   payload,
+// });
 
-export const getVisitFail = payload => ({
-  type: actionLabels.GET_VISIT_FAIL,
-  payload,
-});
+// export const getVisitFail = payload => ({
+//   type: actionLabels.GET_VISIT_FAIL,
+//   payload,
+// });
 
 export const getBooking1Saga = payload => ({
   type: actionLabels.GET_BOOKING1_SAGA,
@@ -104,14 +104,14 @@ export const deleteBookingStart = () => ({
   type: actionLabels.DELETE_BOOKING_START,
 });
 
-export const deleteBookingSaga = (vehicleId) => ({
+export const deleteBookingSaga = (appointmentId) => ({
   type: actionLabels.DELETE_BOOKING_SAGA,
-  payload: { vehicleId},
+  payload: {appointmentId},
 });
 
-export const deleteBookingSuccess = (vehicleId) => ({
+export const deleteBookingSuccess = (appointmentId) => ({
   type: actionLabels.DELETE_BOOKING_SUCCESS,
-  payload : vehicleId
+  payload : appointmentId
 });
 
 export const deleteBookingFail = payload => ({

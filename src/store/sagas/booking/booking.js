@@ -15,6 +15,7 @@ import {
   deleteBookingStart,
   deleteBookingSuccess,
   deleteBookingFail,
+  deleteBookingSaga as deleteBookingSagaAction,
   collectPaymentStart,
   collectPaymentSuccess,
   collectPaymentFail,
@@ -48,7 +49,7 @@ export function* getVisitSaga(action) {
   const id = action.payload ? action.payload.id : null;
   yield errorHandler({
     endpoint: id
-      ? `/appointments/cust/21`
+      ? `/appointments/cust/${id}`
       // : action.payload 
       :`/appointments/all`,
      
@@ -91,10 +92,13 @@ export function* editBookingSaga(action) {
     closeModel,
   } = action.payload;
   yield errorHandler({
-    endpoint: `/appointments/${data.serviceId}`,
+    
+    endpoint: `/appointments/${data.appointmentId}`,
     successHandler: yield function* (response) {
       yield put(editBookingSuccess({ data }));
+      console.log(data.appointmentId + data.appointmentDate + data.vehicleId)
       if (setIsSubmitted) {
+        console.log("inside Edit booking saga");
         setIsSubmitted(false);
         closeModel();
       }
@@ -105,17 +109,20 @@ export function* editBookingSaga(action) {
     },
     failHandlerType: 'CUSTOM',
     apiType: 'put',
+
     payload: data,
   });
 }
 
 export function* deleteBookingSaga(action) {
   yield put(deleteBookingStart());
-  const { bookingId, setIsSubmitted } = action.payload;
+  const { appointmentId, setIsSubmitted } = action.payload;
+  //const appointmentId = action.payload.appointmentId;
+  console.log("inside delete saga appId :" + appointmentId);
   yield errorHandler({
-    endpoint: `/visit/${bookingId}`,
+    endpoint: `/visit/${appointmentId}`,
     successHandler: yield function* (response) {
-      yield put(deleteBookingSuccess({ bookingId,setIsSubmitted }));
+      yield put(deleteBookingSuccess({ appointmentId,setIsSubmitted }));
       if (setIsSubmitted) {
         console.log("reached here");
         setIsSubmitted(false);
@@ -128,7 +135,7 @@ export function* deleteBookingSaga(action) {
     },
     failHandlerType: 'CUSTOM',
     apiType: 'delete',
-    payload: {bookingIdId},
+    payload: {appointmentId},
   });
 }
 

@@ -12,22 +12,7 @@ import {
   editVisitStart,
   editVisitSuccess,
   editVisitFail,
-  getBookingStart,
-  getBookingSuccess,
-  getBookingFail,
-  getBookingSaga as getBookingSagaAction,
-  editBookingStart,
-  editBookingSuccess,
-  editBookingFail,
-  addBookingStart,
-  addBookingSuccess,
-  addBookingFail,
-  deleteBookingStart,
-  deleteBookingSuccess,
-  deleteBookingFail,
-  collectPaymentStart,
-  collectPaymentSuccess,
-  collectPaymentFail,
+
 } from '../../actions';
 import { errorHandler } from '../../../utils';
 
@@ -49,22 +34,26 @@ export function* getVisitSaga(action) {
 }
 
 export function* editVisitSaga(action) {
+  console.log("first line in edit visit saga.")
   yield put(editVisitStart());
   const {
     data,
     setIsSubmitted,
     closeModel,
   } = action.payload;
+  console.log("Insidee the edit visit saga")
   yield errorHandler({
-    endpoint: `/visit/${data.serviceId}`,
+    endpoint: `/visit/${data.appointmentId}`,
     successHandler: yield function* (response) {
       yield put(editVisitSuccess({ data }));
+      console.log("inside edit")
       if (setIsSubmitted) {
         setIsSubmitted(false);
         closeModel();
       }
     },
     failHandler: yield function* (response) {
+      console.log("inside fail")
       yield put(editVisitFail(response));
       setIsSubmitted(false);
     },
@@ -73,3 +62,26 @@ export function* editVisitSaga(action) {
     payload: data,
   });
 }
+
+// export function* deleteBookingSaga(action) {
+//   yield put(deleteBookingStart());
+//   const { bookingId, setIsSubmitted } = action.payload;
+//   yield errorHandler({
+//     endpoint: `/visit/${bookingId}`,
+//     successHandler: yield function* (response) {
+//       yield put(deleteBookingSuccess({ bookingId,setIsSubmitted }));
+//       if (setIsSubmitted) {
+//         console.log("reached here");
+//         setIsSubmitted(false);
+//       }
+//     },
+//     failHandler: yield function* (response) {
+//       yield put(deleteBookingFail(response));
+//       console.log("reached here fail");
+//       // setIsSubmitted(false);
+//     },
+//     failHandlerType: 'CUSTOM',
+//     apiType: 'delete',
+//     payload: {bookingIdId},
+//   });
+// }

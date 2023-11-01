@@ -9,7 +9,7 @@ import { logout } from '../../store/actions';
 //     ? process.env.REACT_APP_END_POINT_URL_DEV
 //     : process.env.REACT_APP_END_POINT_URL_PROD;
 
-const baseURL = "http://3.86.246.169:8080/api/";
+const baseURL = "http://localhost:8080/api/";
 
 
 export default function* errorHandler({

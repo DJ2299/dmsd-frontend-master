@@ -9,10 +9,10 @@ import {
   editUserDetailSaga,
 } from './auth/auth';
 import { 
-  addBookingSaga, collectPaymentSaga, editBookingSaga, getBookingSaga 
+  addBookingSaga, collectPaymentSaga, editBookingSaga, getBookingSaga, deleteBookingSaga 
 } from './booking/booking';
 import { 
-   getVisitSaga
+   getVisitSaga, editVisitSaga
 } from './serviceRecords/serviceRecords';
 import { 
   addCustomerSaga, addManagerSaga, addTechnicianSaga,
@@ -70,12 +70,14 @@ export function* watchBooking() {
     takeEvery(actionLabels.ADD_BOOKING_SAGA, addBookingSaga),
     takeEvery(actionLabels.EDIT_BOOKING_SAGA, editBookingSaga),
     takeEvery(actionLabels.COLLECT_PAYMENT_SAGA, collectPaymentSaga),
+    takeEvery(actionLabels.DELETE_BOOKING_SAGA, deleteBookingSaga),
   ]);
 }
 
 export function* watchServiceRecords() {
   yield all([
-    takeLatest(actionLabels.GET_VISIT_SAGA, getVisitSaga)
+    takeLatest(actionLabels.GET_VISIT_SAGA, getVisitSaga),
+    takeEvery(actionLabels.EDIT_VISIT_SAGA, editVisitSaga),
   ]);
 }
 

@@ -192,7 +192,8 @@ const EditVehicle = props => {
                           autoComplete="off"
                         />
                         <div className="error-message">
-                          {errors.vehicleColor && touched.vehicleColor && errors.vehicleColor}
+                          {errors.vehicleColor && 
+                          touched.vehicleColor && errors.vehicleColor}
                         </div>
                       </div>
                     </div>

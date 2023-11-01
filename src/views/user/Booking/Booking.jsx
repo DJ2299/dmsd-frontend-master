@@ -22,9 +22,11 @@ const Booking = props => {
   const { userData } = useSelector(
     state => state.auth,
   );
-  const handleDelete = (bookingId) => {
+  const handleDelete = (appointmentId) => {
+    console.log("Booking Id :" + appointmentId)
     // Dispatch the delete action
-    dispatch(deleteBookingSaga(bookingId,setIsSubmitted));
+    dispatch(deleteBookingSaga(appointmentId,setIsSubmitted));
+    window.location.reload();
   };
   const dispatch = useDispatch();
 
@@ -35,6 +37,8 @@ const Booking = props => {
     dispatch(getServiceSaga())
 
   }, [])
+
+
   // const userAppointments = bookingList.filter(item => item.customerId === userId);
   // const serviceNames = userAppointments.map(item => item.services.map(service => service.serviceName).join(', '));
   return (
@@ -85,7 +89,7 @@ const Booking = props => {
     : "No Service Names Available"}
 </td> */}
                     <td>{item.appointmentDate}</td>
-                    <td>$100</td>
+                    <td>{item.totalCharge}</td>
                     {/* <td>{item.paymentMethod}Cash</td> */}
                     <td>{item.status}</td>
                     <td>
@@ -111,7 +115,7 @@ const Booking = props => {
                         <span></span>
                         <button
                           type="button"
-                          onClick={() => handleDelete(item.bookingId)}
+                          onClick={() => handleDelete(item.appointmentId)}
                           style={{
                             backgroundColor: 'red',
                             color: '#fff',
