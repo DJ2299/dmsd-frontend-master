@@ -3,11 +3,15 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router';
 import {
   editBookingSaga,
-  getBookingSaga,
+  getLocationSaga, 
+  getServiceSaga, 
+  getVehicleSaga,
+  deleteVisitSaga,
   getVisitSaga
 } from '../../../store/actions';
 import AddBooking from './AddBooking';
 import ViewInvoice from '../../user/Booking/ViewInvoice';
+import EditBooking from '../../employee/Booking/EditBooking';
 import AddPayment from './AddPayment';
 import './index.css';
 
@@ -16,30 +20,36 @@ const Booking = props => {
   const [date, setDate] = useState('');
   const [filter, setFilter] = useState([]);
   const [openViewInvoice, setOpenViewInvoice] = useState(null)
+  const [openEditBooking, setEditBooking] = useState(false)
+  const [isSubmitted, setIsSubmitted] = useState(false);
   const [openAddBooking, setOpenAddBooking] = useState(false)
   const [openAddPayment, setOpenAddPayment] = useState(false)
   const [appointmentId, setAppointmentId] = useState(false)
+  const [selectedBooking, setSelectedBooking] = useState(null);
   const { bookingList } = useSelector(
     state => state.serviceRecords,
   );
-  const { userId, locId } = useParams();
-  // const { userData } = useSelector(
-  //   state => state.auth,
-  // );
+  const { userData } = useSelector(
+    state => state.auth,
+  );
   const dispatch = useDispatch();
+  const values = [10, 20, 30, 40, 50];
+  const randomIndex = Math.floor(Math.random() * values.length);
+  const charge = values[randomIndex]
+
+  const handleDelete = (appointmentId) => {
+    console.log("Booking Delete Id :" + appointmentId)
+    // Dispatch the delete action
+    dispatch(deleteVisitSaga(appointmentId,setIsSubmitted));
+    window.location.reload();
+  };
 
   useEffect(() => {
-    if(userId) {
-      dispatch(getVisitSaga({ id: userId }))
-    } else if(locId) {
-      dispatch(getVisitSaga({ loc: locId }))
-    } else {
-      dispatch(getVisitSaga())
-    }
-    // dispatch(getVehicleSaga({ id: userData.id }))
-    // dispatch(getLocationSaga())
-    // dispatch(getServiceSaga())
-
+    console.log("userdataid:" + userData.id);
+    dispatch(getVisitSaga({ loc: userData.location_id }))
+    dispatch(getVehicleSaga({ id: userData.customerId }))
+    dispatch(getLocationSaga())
+    dispatch(getServiceSaga())
   }, [])
 
 
@@ -55,7 +65,7 @@ const Booking = props => {
       <div className="vehicle">
         <div className='vehicle-list'>
           <div className='vehicle-list-header'>
-            <h2>{userId ? 'User' : locId ? 'Location' : ''} Booking List</h2>
+            <h2>Booking List</h2>
             {/* <button type='button' onClick={() => setOpenAddBooking(true)}>
               Book Appointment
             </button> */}
@@ -71,7 +81,7 @@ const Booking = props => {
             <thead>
               <tr>
                 <th>Vehicle</th>
-                <th>Location</th>
+                {/* <th>Location</th> */}
                 <th>Customer</th>
                 <th>Service</th>
                 <th>Appointment Date</th>
@@ -79,6 +89,7 @@ const Booking = props => {
                 <th>Payment Method</th>
                 <th>Status</th>
                 <th className='text-center'>Invoice</th>
+                <th>Actions</th>
               </tr>
             </thead>
             <tbody>
@@ -88,7 +99,7 @@ const Booking = props => {
                 ) : filter.map(item => (
                   <tr>
                     <td>{item.vehicleType}</td>
-                    <td>{item.locationName}</td>
+                    {/* <td>{item.locationName}</td> */}
                     <td>{item.customerName}</td>
                     <td>{item.serviceName}</td>
                     <td>{item.appointmentDate}</td>
@@ -128,6 +139,43 @@ const Booking = props => {
                         View
                       </button>}
                     </td>
+                    <td>
+                        <button
+                          type="button"
+                          onClick={() => {setEditBooking(true);
+                            setSelectedBooking(item);
+                          }}
+                          style={{
+                            backgroundColor: 'green',
+                            color: '#fff',
+                            border: 'none',
+                            borderRadius: '5px',
+                            padding: '10px 20px',
+                            cursor: 'pointer',
+                            margin:'10px',
+                            marginLeft:'10px',
+                            marginRight:'50px'
+                          }}
+                          >
+                          Edit
+                        </button>
+                        <span></span>
+                        <button
+                          type="button"
+                          onClick={() => handleDelete(item.appointmentId)}
+                          style={{
+                            backgroundColor: 'red',
+                            color: '#fff',
+                            border: 'none',
+                            borderRadius: '5px',
+                            padding: '10px 20px',
+                            cursor: 'pointer',
+                            margin:'10px'
+                          }}
+                        >
+                         Delete
+                        </button>
+                      </td>
                   </tr>
                 )) : (
                   <tr><td colSpan={8} className="text-center pt-5 pb-5">Loading...</td></tr>
@@ -144,6 +192,19 @@ const Booking = props => {
       {openAddPayment && (
         <AddPayment modalOpenClose={setOpenAddPayment} appointmentId={appointmentId} />
       )}
+      {openEditBooking && <EditBooking modalOpenClose={setEditBooking}
+      initialValues = {{
+        customerId:userData.id,
+        serviceId:selectedBooking.serviceId,
+        appointmentId:selectedBooking.appointmentId,
+        vehicleId:selectedBooking.vehicleId,
+        date:selectedBooking.appointmentDate,
+        serviceName:selectedBooking.serviceName,
+        locationName:selectedBooking.locationName,
+        vehicleType:selectedBooking.vehicleType,
+        locationId:selectedBooking.locationId,
+      }}
+      />}
     </>
   );
 };

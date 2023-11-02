@@ -56,7 +56,7 @@ const Booking = props => {
                 {/* <th>Location</th> */}
                 <th>Service</th>
                 <th>Appointment Date</th>
-                <th>Total Charge</th>
+                {/* <th>Total Charge</th> */}
                 {/* <th>Payment Method</th> */}
                 <th>Status</th>
                 <th>Actions</th>
@@ -89,7 +89,7 @@ const Booking = props => {
     : "No Service Names Available"}
 </td> */}
                     <td>{item.appointmentDate}</td>
-                    <td>{item.totalCharge}</td>
+                    {/* <td>{item.totalCharge}</td> */}
                     {/* <td>{item.paymentMethod}Cash</td> */}
                     <td>{item.status}</td>
                     <td>

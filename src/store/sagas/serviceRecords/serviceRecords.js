@@ -12,6 +12,11 @@ import {
   editVisitStart,
   editVisitSuccess,
   editVisitFail,
+  deleteVisitStart,
+  deleteVisitSuccess,
+  deleteVisitFail,
+  deleteVisitSaga as deleteVisitSagaAction,
+
 
 } from '../../actions';
 import { errorHandler } from '../../../utils';
@@ -63,25 +68,26 @@ export function* editVisitSaga(action) {
   });
 }
 
-// export function* deleteBookingSaga(action) {
-//   yield put(deleteBookingStart());
-//   const { bookingId, setIsSubmitted } = action.payload;
-//   yield errorHandler({
-//     endpoint: `/visit/${bookingId}`,
-//     successHandler: yield function* (response) {
-//       yield put(deleteBookingSuccess({ bookingId,setIsSubmitted }));
-//       if (setIsSubmitted) {
-//         console.log("reached here");
-//         setIsSubmitted(false);
-//       }
-//     },
-//     failHandler: yield function* (response) {
-//       yield put(deleteBookingFail(response));
-//       console.log("reached here fail");
-//       // setIsSubmitted(false);
-//     },
-//     failHandlerType: 'CUSTOM',
-//     apiType: 'delete',
-//     payload: {bookingIdId},
-//   });
-// }
+export function* deleteVisitSaga(action) {
+  yield put(deleteVisitStart());
+  const { appointmentId, setIsSubmitted } = action.payload;
+  console.log("delete Visit Saga" + appointmentId)
+  yield errorHandler({
+    endpoint: `/appointments/${appointmentId}`,
+    successHandler: yield function* (response) {
+      yield put(deleteVisitSuccess({ appointmentId,setIsSubmitted }));
+      if (setIsSubmitted) {
+        console.log("delete Visit Saga here");
+        setIsSubmitted(false);
+      }
+    },
+    failHandler: yield function* (response) {
+      yield put(deleteVisitFail(response));
+      console.log("delete Visit Saga  fail");
+      // setIsSubmitted(false);
+    },
+    failHandlerType: 'CUSTOM',
+    apiType: 'delete',
+    payload: {appointmentId},
+  });
+}

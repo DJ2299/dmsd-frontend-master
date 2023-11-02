@@ -39,7 +39,17 @@ export default (state = initialState, { type, payload }) => {
     case actionLabels.GET_VISIT_FAIL:
       return { ...state, isLoading: false, errorMsg: payload };
 
-    // ... (other cases)
+      case actionLabels.DELETE_VISIT_FAIL:{
+        return { ...state, isLoading: false, errorMsg: payload };
+      }
+      case actionLabels.DELETE_VISIT_START:{
+        console.log("Inside Delete Visit Start REducer")
+        return { ...state, isLoading: true};
+      }
+      case actionLabels.DELETE_VISIT_SUCCESS:{
+        return { ...state,
+      };
+    }
 
     default:
       return state;

@@ -78,12 +78,12 @@ export const adminRoutes = [
     exact: true,
     component: React.lazy(() => import('../../views/admin/Booking/Booking')),
   },
-  {
-    path: '/location',
-    name: 'Location',
-    exact: true,
-    component: React.lazy(() => import('../../views/admin/Location/Location')),
-  },
+  // {
+  //   path: '/location',
+  //   name: 'Location',
+  //   exact: true,
+  //   component: React.lazy(() => import('../../views/admin/Location/Location')),
+  // },
   {
     path: '/report',
     name: 'Report',

@@ -44,7 +44,7 @@ const Layout = props => {
               <div><Link to="/customer">Customer</Link></div>
               <div><Link to="/technician">Technician</Link></div>
               <div><Link to="/manager">Manager</Link></div>
-              <div><Link to="/location">Location</Link></div>
+              {/* <div><Link to="/location">Location</Link></div> */}
               <div><Link to="/service">Service</Link></div>
               <div><Link to="/parts">Parts</Link></div>
               <div><Link to="/booking">Booking</Link></div>

@@ -41,3 +41,26 @@ export const editVisitFail = payload => ({
   type: actionLabels.EDIT_VISIT_FAIL,
   payload,
 });
+
+
+export const deleteVisitStart = () => ({
+  type: actionLabels.DELETE_VISIT_START,
+});
+
+export const deleteVisitSaga = (appointmentId) => ({
+  type: actionLabels.DELETE_VISIT_SAGA,
+  payload: {appointmentId},
+});
+console.log("Inside Service Records Actions")
+
+export const deleteVisitSuccess = (appointmentId) => ({
+  type: actionLabels.DELETE_VISIT_SUCCESS,
+  payload : appointmentId
+});
+
+export const deleteVisitFail = payload => ({
+  type: actionLabels.DELETE_VISIT_FAIL,
+  payload,
+});
+
+

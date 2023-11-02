@@ -97,10 +97,7 @@ const ViewInvoice = (props) => {
                       </td>
                       <td className="text-left text-danger">
                         <h2>
-                          <strong> ${data.services[0].partList.reduce(
-                            (total, item) => total + item.retailPrice,
-                            0
-                          )}/-</strong>
+                          <strong> ${data.totalCharge}/-</strong>
                         </h2>
                       </td>
                     </tr>

@@ -2,14 +2,17 @@ import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import {
   editBookingSaga,
-  getBookingSaga,
-  editVisitSaga,
+  getLocationSaga, 
+  getServiceSaga, 
+  getVehicleSaga,
+  deleteVisitSaga,
   getVisitSaga
   
 } from '../../../store/actions';
 import AddBooking from './AddBooking';
 import ViewInvoice from '../../user/Booking/ViewInvoice';
 import AddPayment from '../../admin/Booking/AddPayment';
+import EditBooking from './EditBooking';
 import './index.css';
 // import { getBooking1Saga } from '../../../store/sagas/booking/booking';
 
@@ -18,9 +21,13 @@ const Booking = props => {
   const [date, setDate] = useState('');
   const [filter, setFilter] = useState([]);
   const [openViewInvoice, setOpenViewInvoice] = useState(null)
+  const [openEditBooking, setEditBooking] = useState(false)
+  const [isSubmitted, setIsSubmitted] = useState(false);
+
   const [openAddBooking, setOpenAddBooking] = useState(false)
   const [openAddPayment, setOpenAddPayment] = useState(false)
   const [appointmentId, setAppointmentId] = useState(false)
+  const [selectedBooking, setSelectedBooking] = useState(null);
   const { bookingList } = useSelector(
     state => state.serviceRecords,
   );
@@ -31,12 +38,20 @@ const Booking = props => {
   const values = [10, 20, 30, 40, 50];
   const randomIndex = Math.floor(Math.random() * values.length);
   const charge = values[randomIndex]
+
+  const handleDelete = (appointmentId) => {
+    console.log("Booking Delete Id :" + appointmentId)
+    // Dispatch the delete action
+    dispatch(deleteVisitSaga(appointmentId,setIsSubmitted));
+    window.location.reload();
+  };
+
   useEffect(() => {
-    console.log(getVisitSaga);
+    console.log("userdataid:" + userData.id);
     dispatch(getVisitSaga({ loc: userData.location_id }))
-    // dispatch(getVehicleSaga({ id: userData.id }))
-    // dispatch(getLocationSaga())
-    // dispatch(getServiceSaga())
+    dispatch(getVehicleSaga({ id: userData.customerId }))
+    dispatch(getLocationSaga())
+    dispatch(getServiceSaga())
   }, [])
 
   useEffect(() => {
@@ -128,9 +143,9 @@ const Booking = props => {
                     <td>
                         <button
                           type="button"
-                          // onClick={() => {setEditBooking(true);
-                          //   setSelectedBooking(item);
-                          // }}
+                          onClick={() => {setEditBooking(true);
+                            setSelectedBooking(item);
+                          }}
                           style={{
                             backgroundColor: 'green',
                             color: '#fff',
@@ -148,7 +163,7 @@ const Booking = props => {
                         <span></span>
                         <button
                           type="button"
-                          // onClick={() => handleDelete(item.bookingId)}
+                          onClick={() => handleDelete(item.appointmentId)}
                           style={{
                             backgroundColor: 'red',
                             color: '#fff',
@@ -178,6 +193,19 @@ const Booking = props => {
       {openAddPayment && (
         <AddPayment modalOpenClose={setOpenAddPayment} appointmentId={appointmentId} />
       )}
+      {openEditBooking && <EditBooking modalOpenClose={setEditBooking}
+      initialValues = {{
+        customerId:userData.id,
+        serviceId:selectedBooking.serviceId,
+        appointmentId:selectedBooking.appointmentId,
+        vehicleId:selectedBooking.vehicleId,
+        date:selectedBooking.appointmentDate,
+        serviceName:selectedBooking.serviceName,
+        locationName:selectedBooking.locationName,
+        vehicleType:selectedBooking.vehicleType,
+        locationId:selectedBooking.locationId,
+      }}
+      />}
     </>
   );
 };

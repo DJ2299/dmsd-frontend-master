@@ -14,10 +14,11 @@ const Home = props => {
         <Link to="/customer"><div>Customer</div></Link>
         <Link to="/technician"><div>Technician</div></Link>
         <Link to="/manager"><div>Manager</div></Link>
-        <Link to="/location"><div>Location</div></Link>
+        {/* <Link to="/location"><div>Location</div></Link> */}
+        <Link to="/service"><div>Service</div></Link>
       </div>
       <div className="home">
-        <Link to="/service"><div>Service</div></Link>
+        {/* <Link to="/service"><div>Service</div></Link> */}
         <Link to="/parts"><div>Parts</div></Link>
         <Link to="/booking"><div>Booking</div></Link>
         <Link to="/report"><div>Report</div></Link>

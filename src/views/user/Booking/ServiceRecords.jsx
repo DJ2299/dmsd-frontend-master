@@ -63,7 +63,7 @@ console.log('userData:', userData);
                   
                     <td>{item.serviceName}</td>
                     <td>{item.appointmentDate}</td>
-                    <td>$50</td>
+                    <td>${item.totalCharge}</td>
                     <td>Cash</td>
                     {/* <td>View</td> */}
                   
