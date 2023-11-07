@@ -15,10 +15,10 @@ import {
 import { errorHandler } from '../../../utils';
 
 export function* getReportLSRevenueSaga(action) {
-  const { date, location } = action.payload.data;
+  const { date } = action.payload.data;
   yield put(getReportLSRevenueStart());
   yield errorHandler({
-    endpoint: `/report/pending-services?date=${date}&location=${location}`,
+    endpoint: `/report/pending-services?date=${date}`,
     successHandler: yield function* (response) {
       yield put(getReportLSRevenueSuccess(response.data));
     },

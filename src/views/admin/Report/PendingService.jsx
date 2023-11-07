@@ -38,8 +38,8 @@ const Report = props => {
     <div className='report'>
       <div className="home">
         <Link to="/report/pending-service"><div>Pending service</div></Link>
-        <Link to="/report/revenue"><div>Revenue by Location & Service</div></Link>
-        <Link to="/report/top-3"><div>Top 3 location</div></Link>
+        <Link to="/report/revenue"><div>Revenue by Service</div></Link>
+        {/* <Link to="/report/top-3"><div>Top 3 location</div></Link> */}
       </div>
       <div>
         <div className="row">
@@ -56,7 +56,7 @@ const Report = props => {
               onChange={(e) => setDate(e.target.value)}
             />
           </div>
-          <div className="form-group col-md-6">
+          {/* <div className="form-group col-md-6">
             <label htmlFor="location">Location</label>
             <select 
               className="form-control"
@@ -76,13 +76,13 @@ const Report = props => {
                 ))
               }
             </select>
-          </div>
+          </div> */}
         </div>
       </div>
       <table width='100%' border={1}>
         <thead>
           <tr className='text-center'>
-            <th>Location</th>
+            {/* <th>Location</th> */}
             <th>Service</th>
             <th>Total Pending*</th>
           </tr>
@@ -93,7 +93,7 @@ const Report = props => {
               <tr><td colSpan={3} className="text-center pt-5 pb-5">No data</td></tr> 
             ) : reportLSRevenueList.map(item => (
               <tr>
-                <td>{item.locationName}</td>
+                {/* <td>{item.locationName}</td> */}
                 <td>{item.serviceName}</td>
                 <td>{item.pending_count}</td>
               </tr>

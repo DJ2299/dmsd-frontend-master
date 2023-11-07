@@ -31,8 +31,8 @@ const Report = props => {
     <div className='report'>
       <div className="home">
         <Link to="/report/pending-service"><div>Pending service</div></Link>
-        <Link to="/report/revenue"><div>Revenue by Location & Service</div></Link>
-        <Link to="/report/top-3"><div>Top 3 location</div></Link>
+        <Link to="/report/revenue"><div>Revenue by Service</div></Link>
+        {/* <Link to="/report/top-3"><div>Top 3 location</div></Link> */}
       </div>
       <div>
         <div className="row">
@@ -65,7 +65,7 @@ const Report = props => {
       <table width='100%' border={1}>
             <thead>
               <tr className='text-center'>
-                <th>Location</th>
+                {/* <th>Location</th> */}
                 <th>Service</th>
                 <th>Revenue</th>
               </tr>
@@ -76,7 +76,7 @@ const Report = props => {
                   <tr><td colSpan={3} className="text-center pt-5 pb-5">No data</td></tr> 
                 ) : reportRevenueList.map(item => (
                   <tr>
-                    <td>{item.lname}</td>
+                    {/* <td>{item.lname}</td> */}
                     <td>{item.sname}</td>
                     <td>${item.revenue}</td>
                   </tr>
