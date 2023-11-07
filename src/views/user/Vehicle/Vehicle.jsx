@@ -28,6 +28,7 @@ const dispatch = useDispatch();
   const handleDelete = (vehicleId) => {
     // Dispatch the delete action
     dispatch(deleteVehicleSaga(vehicleId,setIsSubmitted));
+    window.location.reload();
   };
 
 

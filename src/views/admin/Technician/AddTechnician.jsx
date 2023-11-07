@@ -241,7 +241,7 @@ const AddTechnician = props => {
 
                 </div>
                 
-                <div className="row">
+                {/* <div className="row">
 
                   <div className="form-group  col-md-6">
                     <label htmlFor="exampleInputUname">Location</label>
@@ -270,7 +270,7 @@ const AddTechnician = props => {
                     </div>
                   </div>
 
-                </div>
+                </div> */}
 
                 <div className="error-message">{errorMsg}</div>
 

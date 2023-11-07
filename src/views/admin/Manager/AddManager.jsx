@@ -282,7 +282,7 @@ const AddManager = props => {
 
                 </div>
                 
-                <div className="row">
+                {/* <div className="row">
 
                   <div className="form-group  col-md-6">
                     <label htmlFor="exampleInputUname">Location</label>
@@ -309,9 +309,9 @@ const AddManager = props => {
                     <div className="error-message">
                       {errors.location_id && touched.location_id && errors.location_id}
                     </div>
-                  </div>
+                  </div> 
 
-                </div>
+                </div> */}
 
                 <div className="error-message">{errorMsg}</div>
 

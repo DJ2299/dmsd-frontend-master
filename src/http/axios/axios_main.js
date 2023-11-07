@@ -10,7 +10,7 @@ import axios from 'axios';
 //   },
 // });
 const axiosMain = axios.create({
-  baseURL: 'http://localhost:8080/api/',
+  baseURL: 'http://3.80.180.3:8080/api/',
   headers: {
     'Content-Type': 'application/json',
   },

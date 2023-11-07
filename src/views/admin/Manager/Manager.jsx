@@ -40,8 +40,8 @@ const Technician = props => {
                 <th>Name</th>
                 <th>Email</th>
                 <th>Phone #</th>
-                <th>Address</th>
-                <th>Location</th>
+                {/* <th>Address</th>
+                <th>Location</th> */}
                 <th>Expertise</th>
                 <th>Salary</th>
                 <th>Commission Percentage</th>
@@ -57,8 +57,8 @@ const Technician = props => {
                     <td>{item.person.firstName}</td>
                     <td>{item.person.email}</td>
                     <td>{item.person.telephone}</td>
-                    <td>{item.person.address}</td>
-                    <td>{item.locationName}</td>
+                    {/* <td>{item.person.address}</td>
+                    <td>{item.locationName}</td> */}
                     <td>{item.expertise}</td>
                     <td>{item.salary}</td>
                     <td>{item.commisionPercentage}</td>
